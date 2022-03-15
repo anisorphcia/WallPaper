@@ -9,9 +9,8 @@ object Repository {
 
     fun getCategory() = fire(Dispatchers.IO) {
         val categoryResponse = WallPaperNetwork.getCategory()
-        Log.d("TAG", "getCategory: " + 11111)
         if (categoryResponse.msg == "success") {
-            val category = categoryResponse.res
+            val category = categoryResponse.res.category
             Log.d("TAG", "getCategory: " + category)
             Result.success(category)
         } else {
