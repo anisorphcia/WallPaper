@@ -4,9 +4,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.asakao.wallpaper.R
 import com.asakao.wallpaper.logic.model.Category
 
@@ -15,6 +17,7 @@ class CategoryAdapter(private val fragment: Fragment, private val categoryList: 
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView = view.findViewById(R.id.category_title)
+        val bg: ImageView = view.findViewById(R.id.category_img)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,8 +32,8 @@ class CategoryAdapter(private val fragment: Fragment, private val categoryList: 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = categoryList[position]
-        Log.d("TAG", "onBindViewHolder: " + categoryList)
         holder.title.text = item.name
+        holder.bg.load(item.cover)
     }
 
     override fun getItemCount(): Int {

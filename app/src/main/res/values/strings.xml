@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WallPaper</string>
+    <string name="unknown">unknown</string>
 </resources>

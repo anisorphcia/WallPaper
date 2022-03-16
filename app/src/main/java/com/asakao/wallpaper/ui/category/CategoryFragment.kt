@@ -1,13 +1,11 @@
 package com.asakao.wallpaper.ui.category
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.asakao.wallpaper.databinding.FragmentCategoryBinding
@@ -35,9 +33,7 @@ class CategoryFragment:Fragment() {
         binding.recyclerView.layoutManager = layoutManager
         adapter = CategoryAdapter(this, viewModel.categoryList)
         binding.recyclerView.adapter = adapter
-        binding.request.setOnClickListener {
-            viewModel.getCategory((1..10).random())
-        }
+        viewModel.getCategory((1..10).random())
         viewModel.categoryLiveData.observe(viewLifecycleOwner) { result ->
             val category = result.getOrNull()
             if (category != null) {

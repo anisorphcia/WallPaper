@@ -53,4 +53,5 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2-native-mt'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2-native-mt'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    implementation("io.coil-kt:coil:2.0.0-rc01")
 }
