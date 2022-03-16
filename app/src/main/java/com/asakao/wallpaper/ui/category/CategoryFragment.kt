@@ -41,7 +41,7 @@ class CategoryFragment:Fragment() {
                 viewModel.categoryList.addAll(category)
                 adapter.notifyDataSetChanged()
             }else{
-                Toast.makeText(activity, "cannot get the forecast successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "cannot get the category info successfully", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()
             }
         }

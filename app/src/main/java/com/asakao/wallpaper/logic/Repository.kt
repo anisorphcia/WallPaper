@@ -18,6 +18,16 @@ object Repository {
         }
     }
 
+    fun getPicList(id: String) = fire(Dispatchers.IO) {
+        val picListResponse = WallPaperNetwork.getPicList(id)
+        if (picListResponse.msg == "success") {
+            val picList = picListResponse.res.vertical
+            Result.success(picList)
+        } else {
+            Result.failure(RuntimeException("there is nothing info"))
+        }
+    }
+
     private fun <T> fire(context: CoroutineContext, block: suspend () -> Result<T>) =
         liveData<Result<T>>(context) {
             val result = try {

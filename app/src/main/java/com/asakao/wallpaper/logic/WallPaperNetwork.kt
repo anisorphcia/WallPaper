@@ -1,6 +1,7 @@
 package com.asakao.wallpaper.logic
 
 import android.util.Log
+import com.asakao.wallpaper.logic.network.PicListService
 import com.asakao.wallpaper.logic.network.ServiceCreator
 import com.asakao.wallpaper.logic.network.WallPaperService
 import retrofit2.Call
@@ -16,6 +17,10 @@ object WallPaperNetwork {
     private val wallPaperService = ServiceCreator.create(WallPaperService::class.java)
 
     suspend fun getCategory() = wallPaperService.getCategory().await()
+
+    private val picListService = ServiceCreator.create(PicListService::class.java)
+
+    suspend fun getPicList(id: String) = picListService.getPicList(id).await()
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
