@@ -1,5 +1,6 @@
 package com.asakao.wallpaper.ui.category
 
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,12 +14,12 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.asakao.wallpaper.R
 import com.asakao.wallpaper.logic.model.Category
+import com.asakao.wallpaper.ui.piclist.PicListActivity
 import com.asakao.wallpaper.ui.piclist.PicListViewModel
 
 class CategoryAdapter(private val fragment: Fragment, private val categoryList: List<Category>) :
     RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
-    val viewModel by lazy { ViewModelProvider(fragment).get(PicListViewModel::class.java) }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView = view.findViewById(R.id.category_title)
@@ -37,16 +38,10 @@ class CategoryAdapter(private val fragment: Fragment, private val categoryList: 
         holder.title.text = item.name
         holder.bg.load(item.cover)
         holder.itemView.setOnClickListener {
-            viewModel.getPicList(item.id)
-        }
-        viewModel.picListLiveData.observe(fragment){ result->
-            val picList = result.getOrNull()
-            if(picList != null){
-                Log.d("TAG", "onBindViewHolder: "+picList)
-            }else{
-                Toast.makeText(fragment.context, "cannot get the picList info successfully", Toast.LENGTH_SHORT).show()
-                result.exceptionOrNull()?.printStackTrace()
-            }
+            val intent = Intent(fragment.activity, PicListActivity::class.java)
+            intent.putExtra("picId", item.id)
+            fragment.startActivity(intent)
+            fragment.activity?.finish()
         }
     }
 
