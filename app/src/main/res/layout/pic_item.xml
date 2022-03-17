@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:background="#F2F4E9"
-        android:padding="10dp"
-        android:layout_margin="10dp"/>
+        android:padding="5dp"
+        android:layout_margin="5dp"/>
 
 </LinearLayout>
