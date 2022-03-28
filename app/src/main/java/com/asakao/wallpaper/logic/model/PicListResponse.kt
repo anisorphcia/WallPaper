@@ -7,4 +7,4 @@ data class PicListResponse (val msg: String, val res: ResPic)
 
 data class ResPic(val vertical: List<Vertical>) : Serializable{}
 
-data class Vertical(val img: String)
+data class Vertical(val img: String, val thumb: String)

@@ -1,6 +1,7 @@
 package com.asakao.wallpaper.ui.piclist
 
 import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.asakao.wallpaper.R
 import com.asakao.wallpaper.logic.model.Vertical
+import com.asakao.wallpaper.ui.preview.BigPictureActivity
 
 class PicListAdapter(private val activity: Activity, private val picList: List<Vertical>) :
     RecyclerView.Adapter<PicListAdapter.ViewHolder>() {
@@ -26,6 +28,11 @@ class PicListAdapter(private val activity: Activity, private val picList: List<V
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = picList[position]
         holder.pic.load(item.img)
+        holder.itemView.setOnClickListener {
+            val intent = Intent(activity, BigPictureActivity::class.java)
+            intent.putExtra("img", item.img)
+            activity.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {

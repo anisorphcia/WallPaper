@@ -22,6 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.piclist.PicListActivity"></activity>
+        <activity android:name=".ui.preview.BigPictureActivity"></activity>
     </application>
 
 </manifest>
