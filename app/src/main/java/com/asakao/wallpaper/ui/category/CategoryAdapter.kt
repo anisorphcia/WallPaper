@@ -41,7 +41,6 @@ class CategoryAdapter(private val fragment: Fragment, private val categoryList: 
             val intent = Intent(fragment.activity, PicListActivity::class.java)
             intent.putExtra("picId", item.id)
             fragment.startActivity(intent)
-            fragment.activity?.finish()
         }
     }
 

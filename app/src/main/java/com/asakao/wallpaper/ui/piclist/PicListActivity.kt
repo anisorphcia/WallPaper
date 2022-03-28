@@ -20,7 +20,7 @@ class PicListActivity : AppCompatActivity() {
         binding = ActivityPiclistBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        val layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
         binding.picRecyclerView.layoutManager = layoutManager
         adapter = PicListAdapter(this, viewModel.picList)
         binding.picRecyclerView.adapter = adapter
