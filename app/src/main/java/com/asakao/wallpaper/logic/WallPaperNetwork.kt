@@ -20,7 +20,7 @@ object WallPaperNetwork {
 
     private val picListService = ServiceCreator.create(PicListService::class.java)
 
-    suspend fun getPicList(id: String, skip: Int, limit: Int) = picListService.getPicList(id, skip, limit).await()
+    suspend fun getPicList(id: String, skip: String, limit: String) = picListService.getPicList(id, skip, limit).await()
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->

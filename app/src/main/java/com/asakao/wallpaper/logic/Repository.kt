@@ -19,7 +19,7 @@ object Repository {
     }
 
     fun getPicList(id: String, skip: Int, limit: Int) = fire(Dispatchers.IO) {
-        val picListResponse = WallPaperNetwork.getPicList(id, skip, limit)
+        val picListResponse = WallPaperNetwork.getPicList(id, skip.toString(), limit.toString())
         if (picListResponse.msg == "success") {
             val picList = picListResponse.res.vertical
             Result.success(picList)
