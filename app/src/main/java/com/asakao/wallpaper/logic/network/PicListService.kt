@@ -7,7 +7,7 @@ import retrofit2.http.Path
 
 interface PicListService {
 
-    @GET("vertical/category/{id}/vertical?limit=30")
-    fun getPicList(@Path("id") id: String) : Call<PicListResponse>
+    @GET("vertical/category/{id}/vertical?order=new&adult=false&first=0&skip={skip}&limit={limit}")
+    fun getPicList(@Path("id") id: String, @Path("skip") skip: Int, @Path("limit") limit: Int) : Call<PicListResponse>
 
 }

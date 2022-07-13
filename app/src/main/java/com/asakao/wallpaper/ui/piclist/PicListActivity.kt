@@ -26,9 +26,11 @@ class PicListActivity : AppCompatActivity() {
         binding.picRecyclerView.adapter = adapter
 
         val picId = getIntent().getStringExtra("picId")
+        val skip = 1;
+        val limit = 30;
 
         if (picId != null) {
-            viewModel.getPicList(picId)
+            viewModel.getPicList(picId, skip, limit);
         }
 
         viewModel.picListLiveData.observe(this){ result->

@@ -37,13 +37,11 @@ class BigPictureActivity : AppCompatActivity() {
                     ) {
                         MediaStoreUtils.saveImages(this@BigPictureActivity, resource);
                     }
-
                     override fun onLoadCleared(placeholder: Drawable?) {
-                        TODO("Not yet implemented")
+
                     }
 
                 })
         }
     }
-
 }

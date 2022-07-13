@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             if (category != null) {
                 Log.d("TAG", "onCreate: " + category)
             }else{
-                Toast.makeText(this, "cannot get the forecast successfully", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "cannot get the data successfully", Toast.LENGTH_SHORT)
                     .show()
                 result.exceptionOrNull()?.printStackTrace()
             }
