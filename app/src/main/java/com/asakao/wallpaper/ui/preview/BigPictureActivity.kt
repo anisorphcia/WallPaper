@@ -1,16 +1,16 @@
 package com.asakao.wallpaper.ui.preview
 
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import coil.load
 import com.asakao.wallpaper.databinding.ActivityBigPictureBinding
-import java.io.BufferedOutputStream
-import java.io.FileOutputStream
-import java.lang.Exception
-import java.net.HttpURLConnection
-import java.net.URL
+import com.asakao.wallpaper.utils.MediaStoreUtils
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 
-class BigPictureActivity: AppCompatActivity() {
+class BigPictureActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityBigPictureBinding
 
@@ -21,32 +21,28 @@ class BigPictureActivity: AppCompatActivity() {
         binding = ActivityBigPictureBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         val img = getIntent().getStringExtra("img");
 
-        binding.ivBigPic.load(img)
+//        binding.ivBigPic.load(img)
+        Glide.with(this).load(img).into(binding.ivBigPic);
 
-        binding.ivDownload.setOnClickListener{
-            if (img != null) {
-                downloadImage(img)
-            }
-        }
-    }
+        binding.ivDownload.setOnClickListener {
+            Glide.with(this)
+                .asBitmap()
+                .load(img)
+                .into(object  : CustomTarget<Bitmap>(){
+                    override fun onResourceReady(
+                        resource: Bitmap,
+                        transition: Transition<in Bitmap>?,
+                    ) {
+                        MediaStoreUtils.saveImages(this@BigPictureActivity, resource);
+                    }
 
-    fun downloadImage(url: String){
-        var conn: HttpURLConnection? = null
-        try {
-            conn = URL(url).openConnection() as HttpURLConnection
-            conn.connect()
-            conn.inputStream.use { input->
-                BufferedOutputStream(FileOutputStream("./download.png")).use { output->
-                    input.copyTo(output)
-                }
-            }
-        }catch (e: Exception){
-            e.printStackTrace()
-        }finally {
-            conn?.disconnect()
+                    override fun onLoadCleared(placeholder: Drawable?) {
+                        TODO("Not yet implemented")
+                    }
+
+                })
         }
     }
 
