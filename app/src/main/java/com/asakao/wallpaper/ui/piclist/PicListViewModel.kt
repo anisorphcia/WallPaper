@@ -1,5 +1,6 @@
 package com.asakao.wallpaper.ui.piclist
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
@@ -19,6 +20,7 @@ class PicListViewModel: ViewModel() {
 
     fun getPicList(query: String, skip: Int, limit: Int){
         getPicListLiveData.value = BaseQuery(query, skip, limit)
+        Log.d("TAG", "getPicList: $query $skip $limit")
     }
 
 }

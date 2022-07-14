@@ -4,11 +4,13 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.asakao.wallpaper.R
 import com.asakao.wallpaper.databinding.ActivityBigPictureBinding
 import com.asakao.wallpaper.utils.MediaStoreUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.gyf.immersionbar.ImmersionBar
 
 class BigPictureActivity : AppCompatActivity() {
 
@@ -43,5 +45,15 @@ class BigPictureActivity : AppCompatActivity() {
 
                 })
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        ImmersionBar.with(this)
+            .reset()
+            .statusBarDarkFont(false)
+            .statusBarColor(R.color.black)
+            .navigationBarColor(R.color.black)
+            .init()
     }
 }

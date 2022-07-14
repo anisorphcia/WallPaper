@@ -8,7 +8,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.asakao.wallpaper.R
 import com.asakao.wallpaper.databinding.FragmentCategoryBinding
+import com.gyf.immersionbar.ImmersionBar
 
 class CategoryFragment:Fragment() {
 
@@ -21,10 +23,20 @@ class CategoryFragment:Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentCategoryBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        ImmersionBar.with(this)
+            .reset()
+            .statusBarColor(R.color.white)
+            .navigationBarColor(R.color.white)
+            .statusBarDarkFont(true, 0.2f)
+            .init()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
