@@ -42,14 +42,11 @@ class PicListActivity : AppCompatActivity() {
         viewModel.picListLiveData.observe(this){ result->
             val pics = result.getOrNull()
             if(pics != null){
-                if(isLoadMore){
-                    viewModel.picList.addAll(pics)
-                    adapter.notifyDataSetChanged()
-                }else{
+                if(!isLoadMore){
                     viewModel.picList.clear()
-                    viewModel.picList.addAll(pics)
-                    adapter.notifyDataSetChanged()
                 }
+                viewModel.picList.addAll(pics)
+                adapter.notifyDataSetChanged()
             }else{
                 Toast.makeText(this, "can not get any pics", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()
