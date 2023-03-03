@@ -14,13 +14,10 @@ import kotlin.coroutines.suspendCoroutine
 
 object WallPaperNetwork {
 
-    private val wallPaperService = ServiceCreator.create(WallPaperService::class.java)
+    suspend fun getCategory() = ServiceCreator.create<WallPaperService>().getCategory().await()
 
-    suspend fun getCategory() = wallPaperService.getCategory().await()
-
-    private val picListService = ServiceCreator.create(PicListService::class.java)
-
-    suspend fun getPicList(id: String, skip: String, limit: String) = picListService.getPicList(id, skip, limit).await()
+    suspend fun getPicList(id: String, skip: String, limit: String) =
+        ServiceCreator.create<PicListService>().getPicList(id, skip, limit).await()
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
