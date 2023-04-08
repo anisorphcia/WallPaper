@@ -26,8 +26,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.piclist.PicListActivity"></activity>
-        <activity android:name=".ui.preview.BigPictureActivity"></activity>
+        <activity android:name=".ui.piclist.PicListActivity"/>
+        <activity android:name=".ui.preview.BigPictureActivity"/>
+        <activity android:name=".ui.collection.CollectionActivity" />
     </application>
 
 </manifest>

@@ -22,6 +22,7 @@ object Repository {
         val picListResponse = WallPaperNetwork.getPicList(id, skip.toString(), limit.toString())
         if (picListResponse.msg == "success") {
             val picList = picListResponse.res.vertical
+            Log.d("TAG", "picListResponse: " + picList)
             Result.success(picList)
         } else {
             Result.failure(RuntimeException("there is nothing info"))
